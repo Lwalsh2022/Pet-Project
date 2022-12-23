@@ -12,7 +12,7 @@ PostPet.init(
             allowNull: false,
             autoIncrement: true,
         },
-        name: {
+        title: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -24,7 +24,7 @@ PostPet.init(
             allowNull: false,
             defaultValue: DataTypes.NOW,
         },
-        image_location: {
+        image: {
             type: DataTypes.STRING,
         },
         user_id: {
@@ -42,7 +42,7 @@ PostPet.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'PostPet',
+        modelName: 'postpet',
     }
 );
 

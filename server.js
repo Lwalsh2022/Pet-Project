@@ -1,4 +1,4 @@
-// const path = require('path');
+const path = require('path');
 const express = require('express');
 const sequelize = require('./config/connection');
 const { User, PostPet, Comment } = require('./models');
@@ -19,20 +19,22 @@ app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.static(path.join(__dirname, 'public/')));
+app.use(express.static(path.join(__dirname, 'public/')));
 
 const port = process.env.PORT || 3001;
 
 app.use(routes);
 
+
+
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.post("/upload_files", uploadFiles);
-function uploadFiles(req, res) {
-    console.log(req.body);
-}
+// app.post("/upload_files", uploadFiles);
+// function uploadFiles(req, res) {
+//     console.log(req.body);
+// }
 
 sequelize.sync({force:true}).then(() => {
     app.listen(port)

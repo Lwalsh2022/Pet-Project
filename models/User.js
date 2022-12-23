@@ -16,7 +16,7 @@ User.init(
             allowNull: false,
             autoIncrement: true,
         },
-        name: {
+        user_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -35,10 +35,10 @@ User.init(
                 len: [8],
             }
         },
-    }, 
+    },
     {
         sequelize,
-        timestamps: true,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'user',
