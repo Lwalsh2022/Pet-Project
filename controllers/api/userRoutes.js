@@ -4,16 +4,19 @@ const User = require('../../models/User');
 // TODO: Use try/catch to catch errors
 // TODO: Return the appropriate HTTP status codes
 
-// GET a user
+// Create a user
 router.post('/', async (req, res) => {
     try {
         const userData = await User.create(req.body);
-        res.json(userData);
+        // 200 status code means the request was successful
+        res.status(200).json(userData);
     } catch (err) {
-        res.status(500).json(err);
+      // 400 status code means the server could not understand the request
+        res.status(400).json(err);
     }
 });
 
+// GET all users should this be findOne or findAll?
 router.get('/:name', async (req, res) => {
   try {
     const userData = await User.findOne({
@@ -23,7 +26,7 @@ router.get('/:name', async (req, res) => {
  });
     res.json(userData);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
 

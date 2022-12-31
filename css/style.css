@@ -1,7 +1,7 @@
 
 .navbar-header {
     position:static;
-    background-color: white;
+    background-color: rgb(225, 222, 222);
     padding-top: 10px;
     padding-bottom: 20px;
     width: 100%;
@@ -11,6 +11,7 @@
     font-family: 'Crimson Pro', serif;
     font-color: white;
     font-size: 16px;
+    /* font-weight: 800px; */
     letter-spacing: 5px;
   } 
 
@@ -54,7 +55,9 @@
     background-color: white;
   }
   
-
+.img-fluid {
+    width: 100%;
+}
   /* #icon-bg {
     background-color: grey;
     width: 50px;
@@ -87,4 +90,4 @@
       padding-right: 50px;
   }   */
   
- 
+  
