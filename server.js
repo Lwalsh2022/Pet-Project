@@ -14,6 +14,8 @@ const app = express();
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+// Let Express look for templates in the "views" folder.
+app.set('views', './views');
 
 // const helper = exphbs.create({ helpers });
 
@@ -25,10 +27,9 @@ const port = process.env.PORT || 3001;
 
 app.use(routes);
 
-
-
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    console.log('Rendering home page');
+    res.render('home');
 });
 
 // app.post("/upload_files", uploadFiles);
