@@ -20,6 +20,7 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public/')));
+app.use(require("./controllers/"));
 
 const port = process.env.PORT || 3001;
 
@@ -27,9 +28,9 @@ app.use(routes);
 
 
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
+// app.get('/', (req, res) => {
+//     res.send('Hello World!');
+// });
 
 // app.post("/upload_files", uploadFiles);
 // function uploadFiles(req, res) {
@@ -37,8 +38,9 @@ app.get('/', (req, res) => {
 // }
 
 sequelize.sync({force:true}).then(() => {
-    app.listen(port)
+    app.listen(port, () => 
     console.log(`App listening on port ${port}!`)
+    );
 });
 
 
