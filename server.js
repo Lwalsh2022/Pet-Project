@@ -36,10 +36,18 @@ app.get('/', (req, res) => {
 //     console.log(req.body);
 // }
 
-sequelize.sync({force:true}).then(() => {
-    app.listen(port)
-    console.log(`App listening on port ${port}!`)
-});
+// Set this to true when you are ready to use the database
+const shouldUseDatabase = false;
+
+if (shouldUseDatabase) {
+  sequelize.sync({force:true}).then(() => {
+      app.listen(port)
+      console.log(`App listening on port ${port}!`)
+  });
+} else {
+  app.listen(port);
+  console.log(`App listening on port ${port}!`)
+}
 
 
 
