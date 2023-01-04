@@ -1,4 +1,23 @@
-// code for carousel
+function fill_template() {
+    var data = {
+        title: "Adopt a Pet"
+        list: [
+            {name: "you can generate stuff"},
+            {name: "like this"},
+            {name: "and it will be"},
+            {name: "inserted into the template"}
+        ],
+        footer: "this is the footer"
+    };
+    var template = Handlebars.compile(document.querySelector('#template').innerHTML);
+    var filled = template(data);
+    document.querySelector('#content').innerHTML = filled;
+}
+    
+    
+    
+    
+    // code for carousel
 
 // petImages=[];
 //     for (var i=0; i<data.data[0].images.length; i++){
