@@ -5,6 +5,7 @@ const { User, PostPet, Comment } = require('./models');
 const routes = require('./controllers');
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({});
+const Handlebars = require('handlebars');
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 const session = require('express-session');
@@ -21,15 +22,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public/')));
 
-const port = process.env.PORT || 3001;
-
+const port = process.env.PORT || 3002;
+app.use(express.static('public'))
 app.use(routes);
 
 
-
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
 
 // app.post("/upload_files", uploadFiles);
 // function uploadFiles(req, res) {
