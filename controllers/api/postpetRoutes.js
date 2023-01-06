@@ -2,7 +2,6 @@ const router = require('express').Router();
 const Sequelize = require('sequelize');
 const postpet = require("../../models/PostPet");
 const Comment = require("../../models/Comment");
-const withAuth = require("../../utils/auth");
 
 
 router.get("/", (req, res) => {
@@ -15,7 +14,7 @@ router.get("/", (req, res) => {
             "user_id",
         ],
         include: [
-            {model: Comment, attributes: ["comment", "user_id"]},
+            {model: Comment, attributes: ["user_comment", "user_id"]},
         ],
     })
     
@@ -38,7 +37,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.post("/comment", withAuth, (req, res) => {
+router.post("/comment", (req, res) => {
     Comment.create({
         comment_text: req.body.comment_text, 
         name: req.body.name,

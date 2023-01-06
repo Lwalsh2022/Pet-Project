@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const User = require('../../models/User');
-const withAuth = require('../../utils/auth');
 
 // TODO: Use try/catch to catch errors
 // TODO: Return the appropriate HTTP status codes
@@ -51,6 +50,5 @@ router.delete('/:id', async (req, res) => {
   }).catch((err) => res.json(err));
   res.json(userData);
 });
-
 
 module.exports = router;

@@ -39,9 +39,8 @@ app.use(routes);
 
 
 sequelize.sync({force:true}).then(() => {
-    app.listen(port, () => 
+    app.listen(port)
     console.log(`App listening on port ${port}!`)
-    );
 });
 
 
