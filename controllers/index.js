@@ -8,4 +8,8 @@ router.use('/dashboard', dashboardRoutes);
 
 router.use('/api', apiRoutes);
 
+router.get('/main', (req, res) => {res.render('main')
+});
+
+
 module.exports = router;
