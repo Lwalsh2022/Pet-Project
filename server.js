@@ -1,37 +1,42 @@
 const path = require('path');
-const express = require('express');
 const sequelize = require('./config/connection');
 const { User, PostPet, Comment } = require('./models');
 const routes = require('./controllers');
-const exphbs = require('express-handlebars');
-const hbs = exphbs.create({});
-const Handlebars = require('handlebars');
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 const session = require('express-session');
-// const helpers = require('./utils/helpers');
 
+const express = require('express');
 const app = express();
+const PORT = process.env.PORT || 3001;
 
-app.engine('handlebars', hbs.engine);
+
+const exphbs = require('express-handlebars');
+
+app.use(express.static(__dirname + "/public"));
+
+
 app.set('view engine', 'handlebars');
 
-// const helper = exphbs.create({ helpers });
+app.engine('handlebars' , exphbs.engine({
+    defaultLayout: 'index',
+    layoutsDir: __dirname + '/views/layouts',
+    
+}));
+
+
+app.get('/', (req, res) => {
+    res.render('main2');
+});
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public/')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 const port = process.env.PORT || 3002;
-app.use(express.static('public'))
 app.use(routes);
 
-
-
-// app.post("/upload_files", uploadFiles);
-// function uploadFiles(req, res) {
-//     console.log(req.body);
-// }
 
 sequelize.sync({force:true}).then(() => {
     app.listen(port)
