@@ -1,19 +1,73 @@
 const router = require('express').Router();
 const User = require('../../models/User');
 
-// TODO: Use try/catch to catch errors
-// TODO: Return the appropriate HTTP status codes
-
 // Create a user
 router.post('/', async (req, res) => {
-    try {
-        const userData = await User.create(req.body);
-        // 200 status code means the request was successful
-        res.status(200).json(userData);
+  try {
+    const userData = await User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    });
+    // 200 status code means the request was successful  
+    req.session.save(() => {
+      req.session.loggedIn = true;
+      res.status(200).json(userData);
+    });
+    // 400 status code means the server could not understand the request
     } catch (err) {
-      // 400 status code means the server could not understand the request
-        res.status(400).json(err);
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
+// Login
+router.post('/login', async (req, res) => {
+  try {
+    const UserData = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
+
+    if (!UserData) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password. Please try again!' });
+      return;
     }
+
+    const validPassword = await UserData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password. Please try again!' });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.loggedIn = true;
+
+      res
+        .status(200)
+        .json({ user: UserData, message: 'You are now logged in!' });
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// Logout
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
 });
 
 // GET all users should this be findOne or findAll?
