@@ -50,10 +50,10 @@
     /* background-color: white; */
   }
 
-  #weather-header {
+  /* #weather-header {
     text-decoration: underline;
     background-color: white;
-  }
+  } */
   
 .img-fluid {
     width: 100%;
@@ -117,7 +117,7 @@
     font-size: 1.4rem;
     text-align: center;
     font-weight: bold;
-  }
+  } */
 
   .btn-no-style {
     background: none;
