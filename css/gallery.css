@@ -5,6 +5,7 @@
     -webkit-column-width: 33%;
     -moz-column-width: 33%;
     column-width: 33%;
+    margin-left: 20px;
   }
   
   .gallery .pics {
@@ -34,4 +35,25 @@
       padding-left: 1.1rem;
       padding-right: 1.1rem;
     }
+  }
+
+  .navbar-header {
+    position:static;
+    background-color: rgb(225, 222, 222);
+    padding-top: 10px;
+    padding-bottom: 20px;
+    width: 100%;
+    margin-bottom: 20;
+    display: inline-flex;
+    justify-content: space-between;
+    font-family: 'Crimson Pro', serif;
+    font-color: white;
+    font-size: 16px;
+    /* font-weight: 800px; */
+    letter-spacing: 5px;
+  } 
+
+  .navbar.navbar-inverse {
+    background-color: white;
+    border-color: white;
   }

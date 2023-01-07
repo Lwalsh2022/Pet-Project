@@ -1,8 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class PostPet extends Model {
-};
+class PostPet extends Model {}
 
 PostPet.init(
     {
@@ -39,7 +38,6 @@ PostPet.init(
 
     {
         sequelize,
-        timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'postpet',
