@@ -46,6 +46,19 @@ app.get('/login', (req, res) => {
     res.render('login');
 });
 
+app.get('/dogs', (req, res) => {
+    res.render('dogs');
+});
+
+app.get('/cats', (req, res) => {
+    res.render('cats');
+});
+
+app.get('/main2', (req, res) => {
+    res.render('main2');
+});
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/public')));
