@@ -9,7 +9,29 @@ const express = require('express');
 
 const app = express();
 
-const upload = multer({ dest: "uploads/" });
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "uploads")
+    },
+    filename: (req, file, cb) => {
+        console.log(file)
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({storage: storage})
+
+// app.get('/', function(req, res) {
+//     res.sendFile(__dirname + '/views/main2.handlebars'); 
+// });
+
+app.get("/upload", (req, res) => {
+    res.render("cats.handlebars" + "dogs.handlebars");
+});
+
+app.post("/upload", upload.single("image"), (req, res) => {
+    res.send("Image Uploaded")
+});
 
 const sess = {
     secret: 'Petprojectrocks',
