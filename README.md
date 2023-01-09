@@ -1,6 +1,6 @@
 # Pet-Project
 
-## Project Descrioption
+## Project Description
 “Find A Furry Friend” is a web application that allows users to either find a pet to adopt or to post a pet that they wish to rehome. The application focuses on cats and dogs only. Users may also contribute supplies or monetary donations. There is a link to the ASPCA as well.
 
 ## Installation
